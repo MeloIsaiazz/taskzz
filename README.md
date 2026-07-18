@@ -1,0 +1,4 @@
+# Taskzz
+- PostgreSQL
+- Prisma
+- Express
