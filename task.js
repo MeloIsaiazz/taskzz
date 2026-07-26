@@ -10,7 +10,7 @@ export default class Task {
 
     static findOne(id) {
         for (const task of Task.tasksCreated) {
-            if (task.id == id) {
+            if (task.id === id) {
                 return task;
             }
         }

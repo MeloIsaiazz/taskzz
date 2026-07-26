@@ -19,7 +19,7 @@ app.get("/tasks", (req, res) => {
 
 // Criar tarefa
 app.post("/tasks", (req, res) => {
-    if (!req.body.title) {
+    if (!req.body.title.trim()) {
         return res.status(400).json({ code: 400, message: "Title is required" })
     }
 
@@ -39,6 +39,11 @@ app.get("/tasks/:id", (req, res) => {
 
 app.put("/tasks/:id", (req, res) => {
     const id = Number(req.params.id);
+
+    if (!req.body.title.trim()) {
+        return res.status(400).json({ code: 400, message: "Title is required" });
+    }
+
     const task = Task.editTask(id, req.body.title);
 
     if (task) {
@@ -52,7 +57,7 @@ app.delete("/tasks/:id", (req, res) => {
     const id = Number(req.params.id);
 
     if (Task.deleteTask(id)) {
-        return res.status(204).json({ code: 200, message: "Success" })
+        return res.status(204).json()
     }
 
     return res.status(404).json({ code: 404, message: "Not found" })
