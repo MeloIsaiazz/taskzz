@@ -1,15 +1,25 @@
 import express from "express";
 import Task from "./task.js";
+import path from "node:path";
 
 const port = 3000;
 const app = express();
 
-//middleware para ler jsoj
+// Configurar o EJS como template view
+app.set("views", path.join("src", "views"))
+app.set("view engine", "ejs")
+
+//middleware para ler json
 app.use(express.json());
 
 // Saúde da Aplicação
 app.get("/health", (req, res) => {
     res.json({ status: "ok" });
+});
+
+// Página inicial
+app.get("/", (req, res) => {
+    res.render("index")
 });
 
 // Listar tarefas

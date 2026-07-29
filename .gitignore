@@ -1,2 +1,7 @@
 node_modules
 CLAUDE.md
+.env
+/generated/prisma
+.claude
+.windsurf
+.agents
